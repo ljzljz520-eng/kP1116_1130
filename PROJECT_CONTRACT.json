@@ -1,0 +1,52 @@
+{
+  "schema_version": 1,
+  "metrics": {
+    "production_loc": 2329,
+    "production_files": 35,
+    "production_packages": 17,
+    "test_files": 13,
+    "production_functions": 180,
+    "decision_points": 290
+  },
+  "persistence": {
+    "module": "modernc.org/sqlite",
+    "entities": [
+      "Phrase",
+      "Session",
+      "GestureEvent",
+      "DisplayState",
+      "AuditEntry",
+      "PanelState"
+    ],
+    "reopen_test": "TestPersistenceSurvivesReopen"
+  },
+  "workflows": [
+    {
+      "steps": [
+        "receive an open-palm gesture",
+        "classify the gesture and select the welcome phrase",
+        "persist the display state and audit event",
+        "return the drifting particle scene"
+      ],
+      "test": "TestPrimaryWorkflow"
+    },
+    {
+      "steps": [
+        "receive a confirmed custom tour phrase",
+        "accept a staff fist gesture",
+        "form the heart particle mark",
+        "restore the drifting background after a wave"
+      ],
+      "test": "TestSecondaryWorkflow"
+    },
+    {
+      "steps": [
+        "confirm the first staff welcome phrase",
+        "confirm a later replacement phrase",
+        "end the exhibition display",
+        "persist and expose the closing scene"
+      ],
+      "test": "TestTertiaryWorkflow"
+    }
+  ]
+}
