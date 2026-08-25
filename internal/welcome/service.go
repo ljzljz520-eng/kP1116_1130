@@ -79,8 +79,8 @@ func (s *Service) Reset() {
 }
 
 func (s *Service) bindEndCallback(phrase model.Phrase) {
-	if s.endCallback == nil {
-		captured := strings.TrimSpace(phrase.Text)
-		s.endCallback = func() string { return captured }
-	}
+	// Rebind on every confirmation so the closing scene always reflects the
+	// most recently confirmed phrase, not the first one captured.
+	captured := strings.TrimSpace(phrase.Text)
+	s.endCallback = func() string { return captured }
 }

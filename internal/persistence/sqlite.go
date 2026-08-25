@@ -44,6 +44,17 @@ func (s *Store) Ping(ctx context.Context) error {
 	return s.db.PingContext(ctx)
 }
 
+// SetMaxOpenConns forwards to the underlying connection pool. It lets callers
+// (notably tests backed by a shared in-memory database) pin the pool to a
+// single connection so a schema created on one connection stays visible to
+// every subsequent query.
+func (s *Store) SetMaxOpenConns(n int) {
+	if s == nil || s.db == nil {
+		return
+	}
+	s.db.SetMaxOpenConns(n)
+}
+
 func (s *Store) migrate(ctx context.Context) error {
 	for _, statement := range schemaStatements() {
 		if _, err := s.db.ExecContext(ctx, statement); err != nil {
